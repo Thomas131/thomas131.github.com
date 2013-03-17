@@ -1,7 +1,7 @@
-twitter.github.com
+thomas131.github.com
 ======
 
-The source code of http://twitter.github.com/
+My Github-Page. A Fork of twitter.github.com
 
 LICENSE
 ------------
