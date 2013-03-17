@@ -66,10 +66,14 @@
 }
 
     (function ($, undefined) {
+      var repoUrls = {};
 
-      function repoUrl(repo) {
-        return repoUrls[repo.name] || repo.html_url;
-      }
+       function repoUrl(repo) {
+         return repoUrls[repo.name] || repo.html_url;
+     }
+
+      // Put custom repo descriptions in this object, keyed by repo name.
+      var repoDescriptions = {}; 
 
       function repoDescription(repo) {
         return repoDescriptions[repo.name] || repo.description;
