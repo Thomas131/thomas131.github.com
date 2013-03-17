@@ -123,14 +123,6 @@
       }
       addRepos();
 
-      $.getJSON("https://api.github.com/orgs/twitter/members?callback=?", function (result) {
-        var members = result.data;
-
-        $(function () {
-          $("#num-members").text(members.length);
-        });
-      });
-
       function randomItem(array) {
         return array[Math.floor(Math.random() * array.length)];
       }
