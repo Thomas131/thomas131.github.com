@@ -114,8 +114,10 @@
         repos = repos || [];
         page = page || 1;
 
-        var uri = "https://api.github.com/users/thomas131/repos";
-
+        var uri = "https://api.github.com/orgs/twitter/repos?callback=?"
+                + "&per_page=100"
+                + "&page="+page;
+                
         $.getJSON(uri, function (result) {
           if (result.data && result.data.length > 0) {
             repos = repos.concat(result.data);
