@@ -102,12 +102,19 @@
       }
 
       function addRepo(repo) {
-        var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
-        var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
-        $link.append($("<h2>").text(repo.name));
-        $link.append($("<h3>").text(repo.language));
-        $link.append($("<p>").text(repoDescription(repo)));
-        $item.appendTo("#repos");
+	var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
+	if(repo.fork)
+		$item.addClass("fork");
+	var $link = $("<a>").attr("href", repoUrl(repo)).appendTo($item);
+	var $h2 = $("<h2>").text(repo.name);
+	
+        if(repo.fork)
+            $h2.append($("<span>").addClass("forkmark").text(" (Fork)"));
+
+	$link.append($h2);
+	$link.append($("<h3>").text(repo.language));
+	$link.append($("<p>").text(repoDescription(repo)));
+	$item.appendTo("#repos");
       }
 
       function addRepos(repos, page) {
@@ -126,6 +133,13 @@
           else {
             $(function () {
               $("#num-repos").text(repos.length);
+
+
+              var num_forks = 0;
+              for(var i=0;i<repos.length;i++)
+                  if(repos[i].fork)
+                      num_forks++;
+              $("#num-forks").text(num_forks);
 
               // Convert pushed_at to Date.
               $.each(repos, function (i, repo) {
@@ -294,7 +308,8 @@
         <div id="statistics" class="grid-1 alpha header">
           <h1>Statistics</h1>
           <p>
-            <a href="https://github.com/thomas131"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a>
+            <a href="https://github.com/thomas131"><span id="num-repos"><img src="assets/spinner.gif" /></span> public repos</a><br />
+            <a href="https://github.com/thomas131"><span id="num-forks"></span> of them forked</a>
           </p>
         </div>
 
@@ -305,7 +320,7 @@
       </div>
 
       <ol id="repos"></ol>
-      <h1>Thanks to Twitter to put their design of <a href="https://twitter.github.com">twitter.github.com</a> under the Apache-License so I am able to use it!</h1>
+      <h1 style="clear:both">Thanks to Twitter to put their design of <a href="https://twitter.github.com">twitter.github.com</a> under the Apache-License so I am able to use it!</h1>
     </div>
   </body>
 </html>

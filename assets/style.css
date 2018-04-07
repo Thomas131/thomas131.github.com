@@ -89,7 +89,7 @@ div.header h1 {
   margin-bottom: 10px;
 }
 
-#num-repos, #num-members {
+#num-repos, #num-members, #num-forks {
   font-size: 14px;
   font-weight: bold;
   color: #0084b4;
@@ -184,6 +184,14 @@ li.repo h3 {
   border-left: 50px solid transparent;
   border-right: 50px solid #0080b0;
   pointer-events: none;
+}
+
+.repo.fork h2, #num-forks {
+  color: #8080a0 !important;
+}
+
+.repo.fork:after {
+  border-right: 50px solid #8080a0;
 }
 
 .repo.javascript:after {
